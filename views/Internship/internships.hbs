@@ -9,6 +9,7 @@
   <title>Internships</title>
 
   <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
 
 
@@ -45,62 +46,14 @@
             grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns as needed */
             gap: 1rem; /* Adjust the gap between images */
         }
-        .image-grid img {
+     .image-grid img {
             width: 100%; /* Force images to take the full width of their container */
-            height: auto; /* Maintain the image's aspect ratio */
-            max-height: 200px; /* Adjust the maximum height as needed */
             object-fit: cover; /* Preserve the aspect ratio and crop if necessary */
         }
         /* Custom CSS for the fixed-width right part */
-        .fixed-width-right {
+     .fixed-width-right {
             width: 400px; /* Adjust the width as needed */
         }
-
-        /* Add this CSS to your existing styles or style section */
-
-.image-grid-container {
-  overflow-x: auto; /* Enable horizontal scrolling */
-  white-space: nowrap; /* Prevent images from wrapping */
-}
-
-.image-grid {
-  display: inline-flex; /* Display images in a row */
-  transition: transform 0.3s ease; /* Smooth transition effect */
-}
-
-
-.image-grid img {
-  width: 100%; /* Make the image fill its container */
-  height: auto; /* Maintain aspect ratio */
-  max-width: 600px; /* Adjust the maximum width of the image */
-  max-height: 500px; /* Adjust the maximum height of the image */
-  object-fit: cover; /* Cover the container while maintaining aspect ratio */
-}
-
-/* Apply animation when hovering over the container */
-.image-grid-container:hover .image-grid {
-  animation: slide-horizontally 30s infinite forwards;
-}
-.image-grid-container:hover::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.7); /* Adjust the background color on hover */
-}
-.image-grid-container::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust the background color */
-  border-radius: 10px; /* Adjust the border radius to make it circular */
-  border: 2px solid transparent; /* Add border to make it visible */
-  width: 20px; /* Increase the width */
-}
-/* Define the animation */
-@keyframes slide-horizontally {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-100% - 20px)); /* Adjust the final position to cover the entire width and a bit extra */
-  }
-}
-
-
   </style>
 </head>
 
@@ -202,12 +155,12 @@
     content.innerHTML = ""
     let pro_link = `{{URL}}/Processes/Internship Process`
     fetch(pro_link)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         if (data.length > 0) {
           content.innerHTML = data[data.length - 1].content;
         }
-      })
+      });
 
     addStylingToContent();
 
@@ -231,34 +184,30 @@
   }
 
   function insightClick() {
-    const link1 = `{{URL}}/Internship_Insights_Img/`;
+    const link1 = `{{URL}}/Internship_Insights/`;
     const link2 = `{{URL}}/Placement_Insights_Img/`;
     let innerHTML =  ""
-    
-    console.log(link1);
-    console.log(link2);
-fetch(link2)
-  .then((response) => response.json())
-  .then(async (data) => {
-    let innerHTML = `<div class="flex h-full"><div class="w-3/4 p-4">
-                        <div class="image-grid-container">
-                          <div class ="image-grid">`;
-
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].category === "pi_images") {
-        innerHTML += `<img src=${data[i].link} alt="Image">`;
-      }
-    }
-
-    innerHTML += `</div></div></div>`;
-    content.innerHTML = innerHTML;
-  });
+    fetch(link2)
+      .then((response) => response.json())
+      .then(async (data) => {
+        innerHTML += `<div class="flex h-full"><div class="w-3/4 p-4">`
+        innerHTML += `
+        <div class ="image-grid">`
+          const len= await data.length;
+        for(let i = 0; i < len; i++) {
+          if(data[i].category == "ii_images"){
+          console.log(data[i]);
+          innerHTML += `<img src=${data[i].link} alt="Image" class"h-full">`}
+        }
+        innerHTML += `</div>`
+      });
+      
 
        fetch(link1)
       .then((response) => response.json())
       .then(async (data) => {
         
-let str1 = `</div><div  class="hidden w-1/4 h-1/2 p-4 overflow-y-auto flex justify-end"><div class="mx-auto">`;
+        let str1 = `</div><div class="w-1/4 h-screen p-4 overflow-y-auto flex justify-end"><div class="mx-auto">`;
         let str2 = "";
         let i =0;
           for ( i = 0; i < data.length-1; i++) {
@@ -365,6 +314,5 @@ let str1 = `</div><div  class="hidden w-1/4 h-1/2 p-4 overflow-y-auto flex justi
   }
 
 </script>
-
 
 </html>

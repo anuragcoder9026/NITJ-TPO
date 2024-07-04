@@ -36,6 +36,7 @@ app.use(express.json());
 
 // mongo db connections
 const uri = process.env.ATLAS_URI;
+//const uri = "mongodb+srv://member:i1d7D2z3CSSurBmQ@cluster0.xjqozuj.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
