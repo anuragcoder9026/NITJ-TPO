@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Courses</title>
+  <link rel="icon" type="image/x-icon" href="/img/favicon-16x16.png" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      font-family: "Poppins";
+    }
+
+    #header {
+      position: sticky;
+      top: 0;
+    }
+
+    #btn-back-to-top {
+      position: fixed;
+      display: none;
+    }
+
+    .courses {
+      background: linear-gradient(90.09deg, rgba(0, 0, 0, 0.7) 0.08%, rgba(70, 70, 70, 0.70) 99.11%),url(../img/bg_people.JPG);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+     .tpopeople {
+      background: linear-gradient(90.09deg, rgba(0, 0, 0, 0.7) 0.08%, rgba(70, 70, 70, 0.70) 99.11%), url(../img/bg_people.JPG);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .branch-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 10;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 0.5rem;
+      width: max-content;
+    }
+
+    .dropdown:hover .branch-dropdown {
+      z-index: 20;
+    }
+
+    .dropdown:hover {
+      z-index: 30;
+    }
+
+  .branch-dropdown a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #333;
+      text-decoration: none;
+    } 
+
+    .branch-dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    @media (max-width: 768px) {
+      .dropdown p {
+        font-size: 0.875rem;
+      }
+
+      .branch-dropdown a {
+        font-size: 0.75rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dropdown p {
+        font-size: 0.75rem;
+      }
+
+      .branch-dropdown a {
+        font-size: 0.625rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .branch-dropdown a {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.5rem;
+      }
+
+      .group p {
+        font-size: 0.75rem;
+      }
+
+      .branch-dropdown ul {
+        padding: 1rem;
+      }
+    }
+
+    @media (max-width: 290px) {
+      .branch-dropdown a {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.45rem;
+      }
+
+      .group p {
+        font-size: 0.65rem;
+      }
+
+      .branch-dropdown ul {
+        padding: 0.8rem;
+      }
+    }
+
+    .table-container {
+      margin: 2rem 0;
+      padding: 0 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f4f4f4;
+      font-weight: bold;
+    }
+
+    .view-button {
+      color: #007bff;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .view-button:hover {
+      color: #0056b3;
+    }
+    
+
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.popup-image {
+  max-width: 100%;
+  max-height: 80vh;
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+  </style>
+</head>
+
+<body>
+  <div>
+    {{>header}}
+  </div>
+  <br><br><br><br><br><br>
+
+  <!-- Back to top button -->
+  <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light"
+    class="inline-block p-3 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5"
+    id="btn-back-to-top">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img"
+      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+      <path fill="currentColor"
+        d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z">
+      </path>
+    </svg>
+  </button>
+
+  <!-- Background pic and heading -->
+  <div>
+    <div class="courses flex flex-col justify-center items-start h-[224px] px-4 lg:px-[11%] py-[48px]">
+      <p class="font2 font-bold text-[52px] lg:text-[68px] uppercase text-white leading-[1]">Courses</p>
+    </div>
+    <nav class="flex px-4 lg:px-[11%] bg-gray-200 py-[8px] text-black" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center">
+        <li class="inline-flex items-center">
+          <a href="" class="inline-flex items-center text-sm font-medium hover:text-gray-900">
+          </a><a href="{{URL}}" class="text-lg font-medium ml-2"><i class="fa fa-home"></i> CTP</a>
+        </li>
+        <li aria-current="page">
+          <div class="inline-flex items-center">
+            <i style="color: rgb(128, 128, 128); font-size: 12px; margin-left: 12px"
+              class="fa-solid fa-angle-right ml-2"></i>
+            <a href="{{URL}}/index_courses" class="text-lg font-medium ml-2">Courses</a>
+          </div>
+        </li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="grid grid-cols-1 m-[5%] lg:grid-cols-3 gap-8 max-w-4xl lg:mx-auto">
+    <!-- B.Tech Dropdown -->
+    <div class= "group relative transition delay-100 duration-300 hover:cursor-pointer hover:shadow-xl hover:bg-sky-400 hover:shadow-sky-500 hover:scale-110 flex flex-col space-y-4 items-center justify-center w-full h-full px-3 py-5 bg-white shadow shadow-gray-400 rounded-xl dropdown">
+      <div class="flex flex-col space-y-4 items-center justify-center">
+        <p class="group-hover:text-white text-lg lg:text-xl whitespace-nowrap text-center text-dark-purple uppercase ">
+          B.Tech 
+        </p>
+        <div class="branch-dropdown">
+          <ul class="list-none p-2">
+            <li><a href="#" onclick="fetchCourseData('Bachelor of Technology (B.Tech)', 'Bio Technology')">Bio Technology</a></li>
+            <li><a href="#" onclick="fetchCourseData('Bachelor of Technology (B.Tech)', 'Chemical Engineering')">Chemical Engineering</a></li>
+            <li><a href="#" onclick="fetchCourseData('Bachelor of Technology (B.Tech)', 'Civil Engineering')">Civil Engineering</a></li>
+            <li><a href="#" onclick="fetchCourseData('Bachelor of Technology (B.Tech)', 'Computer Science and Engineering')">Computer Science and Engineering</a></li>
+            <li><a href="#" onclick="fetchCourseData('Bachelor of Technology (B.Tech)', 'Data Science and Engineering')">Data Science and Engineering</a></li>
+            <li><a href="#" onclick="fetchCourseData('Bachelor of Technology (B.Tech)', 'Electrical Engineering')">Electrical Engineering</a></li>
+            <li><a href="#" onclick="fetchCourseData('Bachelor of Technology (B.Tech)', 'Electronics and Communication Engineering')">Electronics and Communication Engineering</a></li>
+            <li><a href="#" onclick="fetchCourseData('Bachelor of Technology (B.Tech)', 'Information Technology')">Information Technology</a></li>
+            <li><a href="#" onclick="fetchCourseData('Bachelor of Technology (B.Tech)', 'Mechanical Engineering')">Mechanical Engineering</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- M.Tech Dropdown -->
+    <div class="group relative transition delay-100 duration-300 hover:cursor-pointer hover:shadow-xl hover:bg-sky-400 hover:shadow-sky-500 hover:scale-110 flex flex-col space-y-4 items-center justify-center w-full h-full px-3 py-5 bg-white shadow shadow-gray-400 rounded-xl dropdown">
+      <div class="flex flex-col space-y-4 items-center justify-center">
+        <p class="group-hover:text-white text-lg lg:text-xl whitespace-nowrap text-center text-dark-purple uppercase">
+          M.Tech
+        </p>
+        <div class="branch-dropdown">
+          <ul class="list-none p-2">
+            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Artificial Intelligence')">Artificial Intelligence</a></li>
+            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Bio Technology')">Bio Technology</a></li>
+            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Chemical Engineering')">Chemical Engineering</a></li>
+            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Civil Engineering')">Civil Engineering</a></li>
+            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Computer Science and Engineering')">Computer Science and Engineering</a></li>
+            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Data Science and Engineering')">Data Science and Engineering</a></li>
+            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Electrical Engineering')">Electrical Engineering</a></li>
+            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Electronics and Communication Engineering')">Electronics and Communication Engineering</a></li>
+            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Information Technology')">Information Technology</a></li>
+            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Mechanical Engineering')">Mechanical Engineering</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- MBA Dropdown -->
+    <div class="group relative transition delay-100 duration-300 hover:cursor-pointer hover:shadow-xl hover:bg-sky-400 hover:shadow-sky-500 hover:scale-110 flex flex-col space-y-4 items-center justify-center w-full h-full px-3 py-5 bg-white shadow shadow-gray-400 rounded-xl dropdown">
+      <div class="flex flex-col space-y-4 items-center justify-center">
+        <p class="group-hover:text-white text-lg lg:text-xl whitespace-nowrap text-center text-dark-purple uppercase">
+          MBA
+        </p>
+        <div class="branch-dropdown">
+          <ul class="list-none p-2">
+            <li><a href="#" onclick="fetchCourseData('Master of Business Administration (MBA)', 'Marketing')">Marketing</a></li>
+            <li><a href="#" onclick="fetchCourseData('Master of Business Administration (MBA)', 'Finance')">Finance</a></li>
+            <li><a href="#" onclick="fetchCourseData('Master of Business Administration (MBA)', 'Human Resources')">Human Resources</a></li>
+            <li><a href="#" onclick="fetchCourseData('Master of Business Administration (MBA)', 'Operations')">Operations</a></li>
+            <li><a href="#" onclick="fetchCourseData('Master of Business Administration (MBA)', 'IT Management')">IT Management</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+
+  <div id="course-table" class="table-container"></div>
+
+  
+
+ 
+
+<script>
+    async function fetchCourseData(degree, branch) {
+      try {
+        const response = await fetch('http://localhost:8081/Placement_Insights/');
+        const data = await response.json();
+
+        const filteredData = data.filter(item => item.course === degree && item.department === branch);
+
+        const aggregatedData = filteredData.reduce((acc, item) => {
+          if (!acc[item.company]) {
+            acc[item.company] = {
+              company: item.company,
+              package: parseFloat(item.package),
+              count: 1
+            };
+          } else {
+            acc[item.company].package = Math.max(acc[item.company].package, parseFloat(item.package));
+            acc[item.company].count += 1;
+          }
+          return acc;
+        }, {});
+
+        const tableData = Object.values(aggregatedData).map(item => [
+          item.company,
+          `${item.package} LPA`,
+          item.count,
+          'View'
+        ]);
+
+        createTable(tableData, filteredData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    function createTable(data, originalData) {
+      const tableContainer = document.getElementById("course-table");
+      tableContainer.innerHTML = "";
+
+      if (!data || data.length === 0) {
+        tableContainer.innerHTML = "<p>No data available</p>";
+        return;
+      }
+
+      const table = document.createElement("table");
+      table.className = "min-w-full bg-white border border-gray-300";
+
+      const thead = document.createElement("thead");
+      const headerRow = document.createElement("tr");
+      const headers = ["Company Name", "CTC", "Number of Students Placed", "View"];
+      headers.forEach(headerText => {
+        const th = document.createElement("th");
+        th.className = "px-4 py-2 border-b font-semibold text-left";
+        th.appendChild(document.createTextNode(headerText));
+        headerRow.appendChild(th);
+      });
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+
+      data.forEach(rowData => {
+        const row = document.createElement("tr");
+
+        rowData.forEach((cellData, index) => {
+          const cell = document.createElement("td");
+          cell.className = "px-4 py-2 border-b";
+          if (index === 3) {
+            const viewButton = document.createElement("button");
+            viewButton.textContent = "View";
+            viewButton.className = "view-button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded";
+            viewButton.onclick = function () {
+              alert("Please scroll for details");
+              createStudentTable(rowData[0], originalData);
+            };
+            cell.appendChild(viewButton);
+          } else {
+            cell.appendChild(document.createTextNode(cellData));
+          }
+          row.appendChild(cell);
+        });
+
+        tbody.appendChild(row);
+      });
+
+      table.appendChild(tbody);
+      tableContainer.appendChild(table);
+    }
+
+    function createStudentTable(company, data) {
+  const studentTableContainer = document.getElementById("student-table");
+  studentTableContainer.innerHTML = "";
+
+  const companyData = data.filter(item => item.company === company).sort((a, b) => b.package - a.package);
+
+  if (companyData.length === 0) {
+    studentTableContainer.innerHTML = "<p>No student data available</p>";
+    return;
+  }
+
+  const table = document.createElement("table");
+  table.className = "min-w-full bg-white border border-gray-300 mt-4";
+
+  // Create table header
+  const thead = document.createElement("thead");
+  const headerRow = document.createElement("tr");
+  const headers = ["Company", "Branch", "Student Name", "CTC", "Year", "View"];
+  headers.forEach(headerText => {
+    const th = document.createElement("th");
+    th.className = "px-4 py-2 border-b font-semibold text-left bg-gray-200";
+    th.appendChild(document.createTextNode(headerText));
+    headerRow.appendChild(th);
+  });
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  // Create table body
+  const tbody = document.createElement("tbody");
+
+  companyData.forEach(student => {
+    const row = document.createElement("tr");
+
+    const cellCompany = document.createElement("td");
+    cellCompany.className = "px-4 py-2 border-b";
+    cellCompany.appendChild(document.createTextNode(student.company));
+    row.appendChild(cellCompany);
+
+    const cellBranch = document.createElement("td");
+    cellBranch.className = "px-4 py-2 border-b";
+    cellBranch.appendChild(document.createTextNode(student.department));
+    row.appendChild(cellBranch);
+
+    const cellName = document.createElement("td");
+    cellName.className = "px-4 py-2 border-b";
+    cellName.appendChild(document.createTextNode(student.name));
+    row.appendChild(cellName);
+
+    const cellPackage = document.createElement("td");
+    cellPackage.className = "px-4 py-2 border-b";
+    cellPackage.appendChild(document.createTextNode(`${student.package} LPA`));
+    row.appendChild(cellPackage);
+
+    const cellYear = document.createElement("td");
+    cellYear.className = "px-4 py-2 border-b";
+    cellYear.appendChild(document.createTextNode(student.year));
+    row.appendChild(cellYear);
+
+    const cellView = document.createElement("td");
+    cellView.className = "px-4 py-2 border-b";
+    const viewButton = document.createElement("button");
+    viewButton.textContent = "View";
+    viewButton.className = "view-button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded";
+    viewButton.onclick = function () {
+      showImagePopup(student.image); // Assuming student.image contains the image URL
+    };
+    cellView.appendChild(viewButton);
+    row.appendChild(cellView);
+
+    tbody.appendChild(row);
+  });
+
+  table.appendChild(tbody);
+  studentTableContainer.appendChild(table);
+}
+
+function showImagePopup(imageUrl) {
+  const popup = document.createElement("div");
+  popup.className = "popup-overlay";
+  
+  const popupContent = document.createElement("div");
+  popupContent.className = "popup-content";
+  
+  const img = document.createElement("img");
+  img.src = imageUrl;
+  img.className = "popup-image";
+  
+  const closeButton = document.createElement("button");
+  closeButton.textContent = "Close";
+  closeButton.className = "popup-close";
+  closeButton.onclick = () => document.body.removeChild(popup);
+  
+  popupContent.appendChild(img);
+  popupContent.appendChild(closeButton);
+  popup.appendChild(popupContent);
+  
+  document.body.appendChild(popup);
+}
+    document.addEventListener('DOMContentLoaded', function() {
+  const dropdowns = document.querySelectorAll('.dropdown');
+
+  dropdowns.forEach(dropdown => {
+    const menu = dropdown.querySelector('.branch-dropdown');
+
+    dropdown.addEventListener('click', () => {
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!dropdown.contains(event.target)) {
+        menu.style.display = 'none';
+      }
+    });
+  });
+});
+
+</script>
+
+<div id="course-table"></div>
+<div id="student-table"></div>
+
+<div>
+    {{>footer}}
+  </div>
+
+</body>
+
+</html>

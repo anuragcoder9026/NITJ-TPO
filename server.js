@@ -8,7 +8,7 @@ var path = require("path");
 const handlebars = require("express-handlebars");
 var hb = require("express-handlebars").create();
 const authenticate = require("./middleware/authenticate");
-
+const data=require("./views/Placement_new/data");
 // All routes
 const announcementsRouter = require("./routes/announcements");
 const noticesRouter = require("./routes/notices");
@@ -18,7 +18,7 @@ const processesRouter = require("./routes/processes");
 const policiesRouter = require("./routes/policies");
 const usersRouter = require("./routes/users");
 const placement_insightsRouter = require("./routes/placement_insights");
-const placement_insightsRouter_img = require("./routes/placement_insights_img")
+const placement_insightsRouter_img = require("./routes/placement_insights_img");
 const nitj_messages = require("./routes/nitj_messages");
 const internship_insightsRouter = require("./routes/internship_insights");
 const placement_statsRouter = require("./routes/placement_stats");
@@ -79,7 +79,7 @@ app.use("/FAQs", faqsRouter);
 app.use("/People", peopleRouter);
 app.use("/Processes", processesRouter);
 app.use("/Policies", policiesRouter);
-app.use("/NitjMessage",nitj_messages)
+app.use("/NitjMessage", nitj_messages);
 app.use("/Users", usersRouter);
 app.use("/Internship_Insights", internship_insightsRouter);
 app.use("/Placement_Insights", placement_insightsRouter);
@@ -119,7 +119,7 @@ app.get("/auth", (req, res) => {
   res.render("auth/index.hbs", { URL: process.env.URL });
 });
 
-app.use(authenticate);
+// app.use(authenticate);
 app.get("/admin", (req, res) => {
   res.render("admin_panel/index.hbs", { URL: process.env.URL });
 });
@@ -157,7 +157,9 @@ app.get("/admin/placement_insights", (req, res) => {
 });
 
 app.get("/admin/placement_insights_img", (req, res) => {
-  res.render("admin_panel/placement_insights_img.hbs", { URL: process.env.URL });
+  res.render("admin_panel/placement_insights_img.hbs", {
+    URL: process.env.URL,
+  });
 });
 
 app.get("/admin/internship_insights", (req, res) => {
@@ -172,9 +174,9 @@ app.get("/admin/nitjMessage", (req, res) => {
   res.render("admin_panel/nitjMessage.hbs", { URL: process.env.URL });
 });
 
-app.get("/admin/download",(req, res) =>{
+app.get("/admin/download", (req, res) => {
   res.render("admin_panel/download.hbs", { URL: process.env.URL });
-})
+});
 
 app.get("/admin/PRDetails", (req, res) => {
   res.render("admin_panel/PRDetails.hbs", { URL: process.env.URL });
@@ -184,7 +186,10 @@ app.get("/logout", (req, res) => {
   res.clearCookie("jwtoken");
   res.status(200).send("Admin Logout");
 });
-
+//Testing
+app.get("/courses", (req, res) => {
+  res.render("Placement_new/courses.hbs", { URL: process.env.URL,data});
+});
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
