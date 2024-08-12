@@ -46,92 +46,6 @@
       background-size: cover;
     }
 
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .branch-dropdown {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      z-index: 10;
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 0.5rem;
-      width: max-content;
-    }
-
-    .dropdown:hover .branch-dropdown {
-      z-index: 20;
-    }
-
-    .dropdown:hover {
-      z-index: 30;
-    }
-
-  .branch-dropdown a {
-      display: block;
-      padding: 0.5rem 1rem;
-      color: #333;
-      text-decoration: none;
-    } 
-
-    .branch-dropdown a:hover {
-      background-color: #f0f0f0;
-    }
-
-    @media (max-width: 768px) {
-      .dropdown p {
-        font-size: 0.875rem;
-      }
-
-      .branch-dropdown a {
-        font-size: 0.75rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .dropdown p {
-        font-size: 0.75rem;
-      }
-
-      .branch-dropdown a {
-        font-size: 0.625rem;
-      }
-    }
-
-    @media (max-width: 380px) {
-      .branch-dropdown a {
-        padding: 0.25rem 0.5rem;
-        font-size: 0.5rem;
-      }
-
-      .group p {
-        font-size: 0.75rem;
-      }
-
-      .branch-dropdown ul {
-        padding: 1rem;
-      }
-    }
-
-    @media (max-width: 290px) {
-      .branch-dropdown a {
-        padding: 0.2rem 0.4rem;
-        font-size: 0.45rem;
-      }
-
-      .group p {
-        font-size: 0.65rem;
-      }
-
-      .branch-dropdown ul {
-        padding: 0.8rem;
-      }
-    }
-
     .table-container {
       margin: 2rem 0;
       padding: 0 1rem;
@@ -202,6 +116,117 @@
 }
 
 
+.container {
+   width: 100%;
+    text-align: center;
+     margin-top: 75px;
+    margin-bottom: 65px;
+}
+
+.programs {
+  width: 100vw;
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Spacing between buttons */
+}
+
+.program-item {
+    width:22%;
+    text-align: center;
+    position: relative; /* To position branches and years */
+}
+
+.program-btn:hover {
+    background-color: #0056b3;
+}
+
+.branches-list {
+    display: none;
+    margin-top: 10px;
+    text-align: left;
+    margin-left: 0;
+    margin-right:0;
+    position: absolute;
+    z-index: 100;
+    background-color: #fff;
+    border: 1px solid #ddd;
+      border-radius: 0.5rem;
+      width: max-content;
+      padding-bottom: 5px;
+}
+
+.years-list {
+    display: none;
+    margin-top: 10px;
+    text-align: left;
+    margin-left: 20px; /* Spacing between branches and years */
+    width: fit-content;
+    position: absolute;
+    left: 97%; /* Place years-list to the right of branches-list */
+    top: 0; /* Align with the top of the branches-list */
+     background-color: #fff;
+    border: 1px solid #ddd;
+      border-radius: 0.5rem;
+      width: max-content;
+      padding-bottom: 5px;
+}
+
+.branches-list ul, .years-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.branches-list li, .years-list li {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #333;
+      text-decoration: none;
+      cursor: pointer;
+    } 
+
+   .branches-list li:hover, .years-list li:hover {
+      background-color: #f0f0f0;
+    }
+
+    @media (max-width: 810px) {
+      .programs{
+        flex-direction:column;
+        align-items: center;
+      }
+      .program-item{
+        width: 85%;
+      }
+    }
+    @media (max-width: 528px) {
+     .branches-list li, .years-list li {
+      font-size: 0.875rem;
+    } 
+    }
+     @media (max-width: 470px) {
+     .branches-list li, .years-list li {
+      font-size: 0.775rem;
+    } 
+    }
+    @media (max-width: 425px) {
+     .branches-list li, .years-list li {
+      font-size: 0.675rem;
+    } 
+    }
+     @media (max-width: 382px) {
+     .branches-list li, .years-list li {
+      font-size: 0.515rem;
+    } 
+    }
+     @media (max-width: 315px) {
+     .branches-list li, .years-list li {
+      font-size: 0.485rem;
+    } 
+    }
+    
+.prgram-btn{
+width: 200px;
+}
   </style>
 </head>
 
@@ -245,72 +270,88 @@
     </nav>
   </div>
 
-  <div class="grid grid-cols-1 m-[5%] lg:grid-cols-3 gap-8 max-w-4xl lg:mx-auto">
-    <!-- B.Tech Dropdown -->
-    <div class= "group relative transition delay-100 duration-300 hover:cursor-pointer hover:shadow-xl hover:bg-sky-400 hover:shadow-sky-500 hover:scale-110 flex flex-col space-y-4 items-center justify-center w-full h-full px-3 py-5 bg-white shadow shadow-gray-400 rounded-xl dropdown">
-      <div class="flex flex-col space-y-4 items-center justify-center">
-        <p class="group-hover:text-white text-lg lg:text-xl whitespace-nowrap text-center text-dark-purple uppercase ">
-          B.Tech 
-        </p>
-        <div class="branch-dropdown">
-          <ul class="list-none p-2">
-            <li><a href="#" onclick="fetchCourseData('Bachelor of Technology (B.Tech)', 'Bio Technology')">Bio Technology</a></li>
-            <li><a href="#" onclick="fetchCourseData('Bachelor of Technology (B.Tech)', 'Chemical Engineering')">Chemical Engineering</a></li>
-            <li><a href="#" onclick="fetchCourseData('Bachelor of Technology (B.Tech)', 'Civil Engineering')">Civil Engineering</a></li>
-            <li><a href="#" onclick="fetchCourseData('Bachelor of Technology (B.Tech)', 'Computer Science and Engineering')">Computer Science and Engineering</a></li>
-            <li><a href="#" onclick="fetchCourseData('Bachelor of Technology (B.Tech)', 'Data Science and Engineering')">Data Science and Engineering</a></li>
-            <li><a href="#" onclick="fetchCourseData('Bachelor of Technology (B.Tech)', 'Electrical Engineering')">Electrical Engineering</a></li>
-            <li><a href="#" onclick="fetchCourseData('Bachelor of Technology (B.Tech)', 'Electronics and Communication Engineering')">Electronics and Communication Engineering</a></li>
-            <li><a href="#" onclick="fetchCourseData('Bachelor of Technology (B.Tech)', 'Information Technology')">Information Technology</a></li>
-            <li><a href="#" onclick="fetchCourseData('Bachelor of Technology (B.Tech)', 'Mechanical Engineering')">Mechanical Engineering</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+ 
+  <div class="container">
+        <div class="programs">
+            <div class="program-item">
+                <button class="prgram-btn transition delay-100 duration-300 hover:cursor-pointer hover:shadow-xl hover:bg-sky-400 hover:shadow-sky-500 hover:scale-110 w-full px-3 py-5 bg-white shadow shadow-gray-400 rounded-xl" onclick="toggleBranches('btech')">BTech</button>
+                 <div id="btech-branches" class="branches-list">
+                   <ul>
+                      <li onclick="toggleYears('btech','Bio Technology')">Bio Technology</li>
+                      <li onclick="toggleYears('btech','Chemical Engineering')">Chemical Engineering</li>
+                      <li onclick="toggleYears('btech','Civil Engineering')">Civil Engineering</li>
+                      <li onclick="toggleYears('btech','Computer Science and Engineering')">Computer Science and Engineering</li>
+                      <li onclick="toggleYears('btech','Data Science and Engineering')">Data Science and Engineering</li>
+                      <li onclick="toggleYears('btech','Electrical Engineering')">Electrical Engineering</li>
+                      <li onclick="toggleYears('btech','Electronics and Communication Engineering')">Electronics and Communication Engineering</li>
+                      <li onclick="toggleYears('btech','Information Technology')">Information Technology</li>
+                      <li onclick="toggleYears('btech','Mechanical Engineering')">Mechanical Engineering</li>
+                  </ul>
 
-    <!-- M.Tech Dropdown -->
-    <div class="group relative transition delay-100 duration-300 hover:cursor-pointer hover:shadow-xl hover:bg-sky-400 hover:shadow-sky-500 hover:scale-110 flex flex-col space-y-4 items-center justify-center w-full h-full px-3 py-5 bg-white shadow shadow-gray-400 rounded-xl dropdown">
-      <div class="flex flex-col space-y-4 items-center justify-center">
-        <p class="group-hover:text-white text-lg lg:text-xl whitespace-nowrap text-center text-dark-purple uppercase">
-          M.Tech
-        </p>
-        <div class="branch-dropdown">
-          <ul class="list-none p-2">
-            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Artificial Intelligence')">Artificial Intelligence</a></li>
-            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Bio Technology')">Bio Technology</a></li>
-            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Chemical Engineering')">Chemical Engineering</a></li>
-            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Civil Engineering')">Civil Engineering</a></li>
-            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Computer Science and Engineering')">Computer Science and Engineering</a></li>
-            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Data Science and Engineering')">Data Science and Engineering</a></li>
-            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Electrical Engineering')">Electrical Engineering</a></li>
-            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Electronics and Communication Engineering')">Electronics and Communication Engineering</a></li>
-            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Information Technology')">Information Technology</a></li>
-            <li><a href="#" onclick="fetchCourseData('Master of Technology (M.Tech)', 'Mechanical Engineering')">Mechanical Engineering</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+                    <div id="btech-years" class="years-list">
+                        <ul>
+                            <li onclick="handleYears('Bachelor of Technology (B.Tech)','2022')">2022</li>
+                            <li onclick="handleYears('Bachelor of Technology (B.Tech)','2023')">2023</li>
+                            <li onclick="handleYears('Bachelor of Technology (B.Tech)','2024')">2024</li>
+                            <li onclick="handleYears('Bachelor of Technology (B.Tech)','2025')">2025</li>
+                            <li onclick="handleYears('Bachelor of Technology (B.Tech)','2026')">2026</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-    <!-- MBA Dropdown -->
-    <div class="group relative transition delay-100 duration-300 hover:cursor-pointer hover:shadow-xl hover:bg-sky-400 hover:shadow-sky-500 hover:scale-110 flex flex-col space-y-4 items-center justify-center w-full h-full px-3 py-5 bg-white shadow shadow-gray-400 rounded-xl dropdown">
-      <div class="flex flex-col space-y-4 items-center justify-center">
-        <p class="group-hover:text-white text-lg lg:text-xl whitespace-nowrap text-center text-dark-purple uppercase">
-          MBA
-        </p>
-        <div class="branch-dropdown">
-          <ul class="list-none p-2">
-            <li><a href="#" onclick="fetchCourseData('Master of Business Administration (MBA)', 'Marketing')">Marketing</a></li>
-            <li><a href="#" onclick="fetchCourseData('Master of Business Administration (MBA)', 'Finance')">Finance</a></li>
-            <li><a href="#" onclick="fetchCourseData('Master of Business Administration (MBA)', 'Human Resources')">Human Resources</a></li>
-            <li><a href="#" onclick="fetchCourseData('Master of Business Administration (MBA)', 'Operations')">Operations</a></li>
-            <li><a href="#" onclick="fetchCourseData('Master of Business Administration (MBA)', 'IT Management')">IT Management</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+            <div class="program-item">
+                <button class="transition delay-100 duration-300 hover:cursor-pointer hover:shadow-xl hover:bg-sky-400 hover:shadow-sky-500 hover:scale-110 w-full px-3 py-5 bg-white shadow shadow-gray-400 rounded-xl" onclick="toggleBranches('mtech')">MTech</button>
+                <div id="mtech-branches" class="branches-list">
+                    <ul class="list-none p-2">
+                        <li onclick="toggleYears('mtech','Artificial Intelligence')">Artificial Intelligence</li>
+                        <li onclick="toggleYears('mtech','Bio Technology')">Bio Technology</li>
+                        <li onclick="toggleYears('mtech','Chemical Engineering')">Chemical Engineering</li>
+                        <li onclick="toggleYears('mtech','Civil Engineering')">Civil Engineering</li>
+                        <li onclick="toggleYears('mtech','Computer Science and Engineering')">Computer Science and Engineering</li>
+                        <li onclick="toggleYears('mtech','Data Science and Engineering')">Data Science and Engineering</li>
+                        <li onclick="toggleYears('mtech','Electrical Engineering')">Electrical Engineering</li>
+                        <li onclick="toggleYears('mtech','Electronics and Communication Engineering')">Electronics and Communication Engineering</li>
+                        <li onclick="toggleYears('mtech','Information Technology')">Information Technology</li>
+                        <li onclick="toggleYears('mtech','Mechanical Engineering')">Mechanical Engineering</li>
+                    </ul>
 
+                    <div id="mtech-years" class="years-list">
+                        <ul>
+                           <li onclick="handleYears('Master of Technology (M.Tech)','2022')">2022</li>
+                            <li onclick="handleYears('Master of Technology (M.Tech)','2023')">2023</li>
+                            <li onclick="handleYears('Master of Technology (M.Tech)','2024')">2024</li>
+                            <li onclick="handleYears('Master of Technology (M.Tech)','2025')">2025</li>
+                            <li onclick="handleYears('Master of Technology (M.Tech)','2026')">2026</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="program-item">
+                <button class="transition delay-100 duration-300 hover:cursor-pointer hover:shadow-xl hover:bg-sky-400 hover:shadow-sky-500 hover:scale-110 w-full px-3 py-5 bg-white shadow shadow-gray-400 rounded-xl" onclick="toggleBranches('mba')">MBA</button>
+                <div id="mba-branches" class="branches-list">
+                   <ul>
+                      <li onclick="toggleYears('mba','Marketing')">Marketing</li>
+                      <li onclick="toggleYears('mba','Finance')">Finance</li>
+                      <li onclick="toggleYears('mba','Human Resources')">Human Resources</li>
+                      <li onclick="toggleYears('mba','Operations')">Operations</li>
+                      <li onclick="toggleYears('mba','IT Management')">IT Management</li>
+                  </ul>
+
+                    <div id="mba-years" class="years-list">
+                        <ul>
+                           <li onclick="handleYears('Master of Business Administration (MBA)','2022')">2022</li>
+                            <li onclick="handleYears('Master of Business Administration (MBA)','2023')">2023</li>
+                            <li onclick="handleYears('Master of Business Administration (MBA)','2024')">2024</li>
+                            <li onclick="handleYears('Master of Business Administration (MBA)','2025')">2025</li>
+                            <li onclick="handleYears('Master of Business Administration (MBA)','2026')">2025</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
   <div id="course-table" class="table-container"></div>
 
@@ -319,12 +360,13 @@
  
 
 <script>
-    async function fetchCourseData(degree, branch) {
+    async function fetchCourseData(degree, branch,year) {
+      const studentTableContainer = document.getElementById("student-table");
+  studentTableContainer.innerHTML = "";
       try {
         const response = await fetch('http://localhost:8081/Placement_Insights/');
         const data = await response.json();
-
-        const filteredData = data.filter(item => item.course === degree && item.department === branch);
+        const filteredData = data.filter(item => item.course === degree && item.department === branch && item.year===Number(year));
 
         const aggregatedData = filteredData.reduce((acc, item) => {
           if (!acc[item.company]) {
@@ -346,12 +388,22 @@
           item.count,
           'View'
         ]);
+        // Hide all branch lists
+    const branchLists = document.querySelectorAll('.branches-list');
+    branchLists.forEach(list => {
+        list.style.display = 'none';
+    });
 
+    // Hide all year lists
+    const yearLists = document.querySelectorAll('.years-list');
+    yearLists.forEach(list => {
+        list.style.display = 'none';
+    });
         createTable(tableData, filteredData);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
-    }
+    } 
 
     function createTable(data, originalData) {
       const tableContainer = document.getElementById("course-table");
@@ -505,24 +557,61 @@ function showImagePopup(imageUrl) {
   
   document.body.appendChild(popup);
 }
-    document.addEventListener('DOMContentLoaded', function() {
-  const dropdowns = document.querySelectorAll('.dropdown');
 
-  dropdowns.forEach(dropdown => {
-    const menu = dropdown.querySelector('.branch-dropdown');
-
-    dropdown.addEventListener('click', () => {
-      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-    });
-
+document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (event) => {
-      if (!dropdown.contains(event.target)) {
-        menu.style.display = 'none';
-      }
+        const programItems = document.querySelectorAll('.program-item');
+        programItems.forEach(item => {
+            const branchList = item.querySelector('.branches-list');
+            const yearList = item.querySelector('.years-list');
+
+            // Check if the click was outside of the program item, branch list, and year list
+            if (!item.contains(event.target) && !branchList.contains(event.target) && !yearList.contains(event.target)) {
+                // Hide all branch lists
+                branchList.style.display = 'none';
+                // Hide all year lists
+                yearList.style.display = 'none';
+            }
+        });
     });
-  });
 });
 
+function toggleBranches(program) {
+    // Hide all branch lists
+    const branchLists = document.querySelectorAll('.branches-list');
+    branchLists.forEach(list => {
+        list.style.display = 'none';
+    });
+
+    // Hide all year lists
+    const yearLists = document.querySelectorAll('.years-list');
+    yearLists.forEach(list => {
+        list.style.display = 'none';
+    });
+
+    // Show the selected branch list
+    const branchList = document.getElementById(`${program}-branches`);
+    branchList.style.display = 'block';
+
+    // Hide any previously shown years lists
+    const yearContainer = document.getElementById(`${program}-years`);
+    if (yearContainer) {
+        yearContainer.style.display = 'none';
+    }
+}
+let branch="";
+function toggleYears(program,brch) {
+    branch=brch;
+    const yearContainer = document.getElementById(`${program}-years`);
+    if (yearContainer.style.display === 'block') {
+        yearContainer.style.display = 'none';
+    } else {
+        yearContainer.style.display = 'block';
+    }
+}
+function handleYears(degree,year){
+   fetchCourseData(degree, branch,year);
+}
 </script>
 
 <div id="course-table"></div>
